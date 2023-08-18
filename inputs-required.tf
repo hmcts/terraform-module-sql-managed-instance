@@ -1,3 +1,49 @@
+variable "sqlmi_name" {
+  type        = string
+  description = "The name of the SQL Managed Instance."
+}
+
+variable "sqlmi_resource_group" {
+  type        = string
+  description = "The name of the resource group to deploy the SQL Managed Instance in."
+}
+
+variable "sqlmi_admin_password" {
+  type        = string
+  sensitive   = true
+  description = "The Admin password for the SQL Managed Instance."
+}
+
+variable "sqlmi_subnet_id" {
+  type        = string
+  description = "The Subnet ID to connect the SQL Managed Instance to."
+}
+
+variable "license_type" {
+  type        = string
+  description = "The type of license the Managed Instance will use"
+}
+
+variable "sku_name" {
+  type        = string
+  description = "The SKU Name for the SQL Managed Instance."
+}
+
+variable "vcores" {
+  type        = number
+  description = "Number of cores that should be assigned to the SQL Managed Instance."
+}
+
+variable "storage_size_in_gb" {
+  type        = number
+  description = "Maximum storage space for the SQL Managed instance."
+}
+
+variable "sqlmi_db" {
+  type        = string
+  description = "The name of the Managed Database to create. "
+}
+
 variable "env" {
   description = "Environment value"
   type        = string
