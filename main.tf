@@ -16,7 +16,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   vcores                       = var.vcores
   storage_size_in_gb           = var.storage_size_in_gb
 
-  private_dns_zone_id = var.public_access == true ? null : local.private_dns_zone_id
+#   private_dns_zone_id = var.public_access == true ? null : local.private_dns_zone_id
 
   tags = var.common_tags
 
@@ -52,8 +52,8 @@ resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi"
   ]
 }
 
-resource "azurerm_mssql_managed_database" "misql_db" {
-  name                = var.misql_db
+resource "azurerm_mssql_managed_database" "sqlmi_db" {
+  name                = var.sqlmi_db
   managed_instance_id = azurerm_mssql_managed_instance.misql.id
 }
 
