@@ -46,6 +46,7 @@ module "todo_resource_name" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The Admin password for the SQL Managed Instance. | `string` | n/a | yes |
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common tag to be applied to resources | `map(string)` | n/a | yes |
 | <a name="input_component"></a> [component](#input\_component) | https://hmcts.github.io/glossary/#component | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Environment value | `string` | n/a | yes |
@@ -54,7 +55,6 @@ module "todo_resource_name" {
 | <a name="input_project"></a> [project](#input\_project) | Project name - sds or cft. | `any` | n/a | yes |
 | <a name="input_sku_name"></a> [sku\_name](#input\_sku\_name) | The SKU Name for the SQL Managed Instance. | `string` | n/a | yes |
 | <a name="input_sqlmi_admin_name"></a> [sqlmi\_admin\_name](#input\_sqlmi\_admin\_name) | The name of the admin user. | `string` | `"VMAdmin"` | no |
-| <a name="input_sqlmi_admin_password"></a> [sqlmi\_admin\_password](#input\_sqlmi\_admin\_password) | The Admin password for the SQL Managed Instance. | `string` | n/a | yes |
 | <a name="input_sqlmi_db"></a> [sqlmi\_db](#input\_sqlmi\_db) | The name of the Managed Database to create. | `string` | n/a | yes |
 | <a name="input_sqlmi_location"></a> [sqlmi\_location](#input\_sqlmi\_location) | Target Azure location to deploy the resource | `string` | `"UK South"` | no |
 | <a name="input_sqlmi_name"></a> [sqlmi\_name](#input\_sqlmi\_name) | The name of the SQL Managed Instance. | `string` | n/a | yes |
