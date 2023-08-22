@@ -45,7 +45,7 @@ resource "azuread_directory_role_assignment" "sqlmireaderassignment" {
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
   managed_instance_id = azurerm_mssql_managed_instance.sqlmi.id
   login_username      = "platops"
-  object_id           = data.azuread_group.sql_admin.object_id
+  object_id           = data.azuread_group.sqlmi_admin.object_id
   tenant_id           = data.azurerm_client_config.current.tenant_id
   depends_on = [
     azurerm_mssql_managed_instance.sqlmi
