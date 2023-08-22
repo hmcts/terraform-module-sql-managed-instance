@@ -4,7 +4,7 @@ variable "sqlmi_location" {
   default     = "UK South"
 }
 
-variable "sqlmi_admin_name" {
+variable "admin_name" {
   type        = string
   description = "The name of the admin user."
   default     = "VMAdmin"
