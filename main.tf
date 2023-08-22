@@ -32,7 +32,7 @@ resource "azuread_directory_role" "reader" {
     display_name = "Directory Readers"
 }
 
-resource "azuread_directory_role_member" "sqlmireaderassignment" {
+resource "azuread_directory_role_assignment" "sqlmireaderassignment" {
   role_object_id   = azuread_directory_role.reader.object_id
   member_object_id = azurerm_mssql_managed_instance.sqlmi.identity.0.principal_id
 }
