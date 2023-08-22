@@ -67,3 +67,7 @@ variable "component" {
   description = "https://hmcts.github.io/glossary/#component"
   type        = string
 }
+
+variable "admin_group" {
+  type        = string
+}

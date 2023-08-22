@@ -1,7 +1,4 @@
-locals {
-  admin_group    = local.is_prod ? "DTS Platform Operations SC" : "DTS Platform Operations"
 
-}
 
 # Create managed instance
 resource "azurerm_mssql_managed_instance" "sqlmi" {
@@ -38,7 +35,7 @@ resource "azuread_directory_role_assignment" "sqlmireaderassignment" {
 }
 
 data "azuread_group" "sqlmi_admin" {
-    display_name = local.admin_group
+    display_name = var.admin_group
     security_enabled = true
 }
 
