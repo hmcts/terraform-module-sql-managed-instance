@@ -8,7 +8,7 @@ variable "sqlmi_resource_group" {
   description = "The name of the resource group to deploy the SQL Managed Instance in."
 }
 
-variable "sqlmi_admin_password" {
+variable "admin_password" {
   type        = string
   sensitive   = true
   description = "The Admin password for the SQL Managed Instance."
