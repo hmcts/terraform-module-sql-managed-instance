@@ -29,16 +29,18 @@ resource "azuread_directory_role" "reader" {
     display_name = "Directory Readers"
 }
 
-resource "azuread_directory_role_assignment" "sqlmireaderassignment" {
-
-  role_id   = azuread_directory_role.reader.object_id
-  principal_object_id = data.azuread_group.sql_admin.object_id
-}
-
 data "azuread_group" "sqlmi_admin" {
     display_name = var.admin_group
     security_enabled = true
 }
+
+resource "azuread_directory_role_assignment" "sqlmireaderassignment" {
+
+  role_id   = azuread_directory_role.reader.object_id
+  principal_object_id = data.azuread_group.sqlmi_admin.object_id
+}
+
+
 
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
   managed_instance_id = azurerm_mssql_managed_instance.sqlmi.id
