@@ -46,6 +46,7 @@ module "todo_resource_name" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_admin_group"></a> [admin\_group](#input\_admin\_group) | n/a | `string` | n/a | yes |
 | <a name="input_admin_name"></a> [admin\_name](#input\_admin\_name) | The name of the admin user. | `string` | `"VMAdmin"` | no |
 | <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The Admin password for the SQL Managed Instance. | `string` | n/a | yes |
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common tag to be applied to resources | `map(string)` | n/a | yes |
