@@ -24,6 +24,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 }
 
 
+
 # data "azurerm_client_config" "current" {
 # }
 
@@ -53,9 +54,9 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 #   ]
 # }
 
-# resource "azurerm_mssql_managed_database" "sqlmi_db" {
-#   name                = var.sqlmi_db
-#   managed_instance_id = azurerm_mssql_managed_instance.sqlmi.id
-# }
+resource "azurerm_mssql_managed_database" "sqlmi_db" {
+  name                = var.sqlmi_db
+  managed_instance_id = azurerm_mssql_managed_instance.sqlmi.id
+}
 
 
