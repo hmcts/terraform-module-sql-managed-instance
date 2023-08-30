@@ -49,11 +49,6 @@ variable "env" {
   type        = string
 }
 
-variable "common_tags" {
-  description = "Common tag to be applied to resources"
-  type        = map(string)
-}
-
 variable "product" {
   description = "https://hmcts.github.io/glossary/#product"
   type        = string
@@ -69,5 +64,5 @@ variable "component" {
 }
 
 variable "admin_group" {
-  type        = string
+  type = string
 }
