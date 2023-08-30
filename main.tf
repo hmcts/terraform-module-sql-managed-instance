@@ -24,37 +24,6 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 }
 
 
-resource "azurerm_virtual_network" "managed_sql_vnet" {
-  name                = "vnet-mi"
-  resource_group_name = azurerm_resource_group.this.name
-  address_space       = ["10.0.0.0/24"]
-  location            = var.location
-  tags                = var.common_tags
-}
-
-resource "azurerm_subnet" "vnet_subnet" {
-  name                 = "test-subnet"
-  resource_group_name  = azurerm_resource_group.this.name
-  virtual_network_name = azurerm_virtual_network.managed_sql_vnet.name
-  address_prefixes     = ["10.0.0.0/27"]
-
-
-  delegation {
-    name = "managedinstancedelegation"
-
-    service_delegation {
-      name = "Microsoft.Sql/managedInstances"
-      actions = [
-        "Microsoft.Network/virtualNetworks/subnets/join/action",
-        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
-        "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"
-      ]
-    }
-  }
-}
-
-
-
 # data "azurerm_client_config" "current" {
 # }
 
