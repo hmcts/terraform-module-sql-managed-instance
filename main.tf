@@ -15,12 +15,13 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
   #   private_dns_zone_id = var.public_access == true ? null : local.private_dns_zone_id
 
-  tags = var.common_tags
-
 
   identity {
     type = "SystemAssigned"
   }
+
+  tags = var.common_tags
+
 }
 
 # data "azurerm_client_config" "current" {
