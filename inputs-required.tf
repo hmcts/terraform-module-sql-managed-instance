@@ -1,11 +1,6 @@
-variable "sqlmi_name" {
-  type        = string
-  description = "The name of the SQL Managed Instance."
-}
-
-variable "sqlmi_resource_group" {
-  type        = string
-  description = "The name of the resource group to deploy the SQL Managed Instance in."
+variable "name" {
+  default     = ""
+  description = "The default name will be product+component+env, you can override the product+component part by setting this"
 }
 
 variable "admin_password" {
