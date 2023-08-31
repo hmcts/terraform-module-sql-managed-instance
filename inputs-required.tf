@@ -72,3 +72,7 @@ variable "common_tags" {
   type        = map(string)
   default     = null
 }
+
+variable "business_area" {
+  description = "business_area name - sds or cft."
+}
