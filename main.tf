@@ -5,8 +5,8 @@ locals {
   sqlmi_resource_group = var.resource_group_name == null ? azurerm_resource_group.rg[0].name : var.resource_group_name
   sqlmi_location       = var.resource_group_name == null ? azurerm_resource_group.rg[0].location : var.location
   env                  = var.env == "sandbox" ? "sbox" : var.env
-  vnet_rg_name         = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
-  vnet_name            = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${local.env}-vnet"
+  # vnet_rg_name         = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
+  # vnet_name            = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${local.env}-vnet"
 
   is_prod = length(regexall(".*(prod).*", var.env)) > 0
 
@@ -40,11 +40,11 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
     type = "SystemAssigned"
   }
 
-  authentication {
-    active_directory_auth_enabled = true
-    tenant_id                     = data.azurerm_client_config.current.tenant_id
-    password_auth_enabled         = true
-  }
+  # authentication {
+  #   active_directory_auth_enabled = true
+  #   tenant_id                     = data.azurerm_client_config.current.tenant_id
+  #   password_auth_enabled         = true
+  # }
 
   tags = var.common_tags
 }
