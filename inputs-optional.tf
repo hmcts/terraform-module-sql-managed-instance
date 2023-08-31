@@ -16,5 +16,13 @@ variable "resource_group_name" {
   default     = null
 }
 
+variable "enable_read_only_group_access" {
+  type        = bool
+  default     = true
+  description = "Enables read only group support for accessing the database"
+}
+
+
+
 
 
