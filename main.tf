@@ -21,6 +21,18 @@ data "azuread_group" "db_admin" {
   security_enabled = true
 }
 
+data "azuread_service_principal" "mi_name" {
+  count     = var.enable_read_only_group_access ? 1 : 0
+  object_id = var.admin_user_object_id
+}
+
+resource "random_password" "password" {
+  length = 20
+  # safer set of special characters for pasting in the shell
+  override_special = "()-_"
+}
+
+
 
 # Create managed instance
 resource "azurerm_mssql_managed_instance" "sqlmi" {
@@ -49,12 +61,20 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   tags = var.common_tags
 }
 
+resource "azurerm_user_assigned_identity" "sqlmi-ui" {
+  location            = local.sqlmi_location
+  name                = "sqlmi-useridentity"
+  resource_group_name = local.sqlmi_resource_group
+}
+
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
   count               = var.enable_read_only_group_access ? 1 : 0
   managed_instance_id = azurerm_mssql_managed_instance.sqlmi.id
   login_username      = "platops"
   object_id           = data.azuread_group.db_admin.object_id
   tenant_id           = data.azurerm_client_config.current.tenant_id
+  principal_name      = local.admin_group
+  principal_type      = "Group"
   depends_on = [
     azurerm_mssql_managed_instance.sqlmi
   ]
