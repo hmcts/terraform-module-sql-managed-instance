@@ -5,3 +5,7 @@ output "resource_group_name" {
 output "resource_group_location" {
   value = local.sqlmi_location
 }
+
+output "roles" {
+  value = data.azuread_directory_roles.current.object_ids
+}

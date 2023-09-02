@@ -49,8 +49,10 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
 
   identity {
-    type = "UserAssigned"
+    type = "SystemAssigned"
   }
+
+  data "azuread_directory_roles" "current" {}
 
   # authentication {
   #   active_directory_auth_enabled = true
