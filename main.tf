@@ -52,7 +52,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
     type = "SystemAssigned"
   }
 
-  data "azuread_directory_roles" "current" {}
+  
 
   # authentication {
   #   active_directory_auth_enabled = true
@@ -62,6 +62,8 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
   tags = var.common_tags
 }
+
+data "azuread_directory_roles" "current" {}
 
 # resource "azurerm_user_assigned_identity" "sqlmi-ui" {
 #   location            = local.sqlmi_location
