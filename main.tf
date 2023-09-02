@@ -37,7 +37,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
 
   identity {
-    type = "SystemAssigned"
+    type = "UserAssigned"
   }
 
   # authentication {
