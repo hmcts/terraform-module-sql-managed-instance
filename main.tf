@@ -61,11 +61,11 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   tags = var.common_tags
 }
 
-resource "azurerm_user_assigned_identity" "sqlmi-ui" {
-  location            = local.sqlmi_location
-  name                = "sqlmi-useridentity"
-  resource_group_name = local.sqlmi_resource_group
-}
+# resource "azurerm_user_assigned_identity" "sqlmi-ui" {
+#   location            = local.sqlmi_location
+#   name                = "sqlmi-useridentity"
+#   resource_group_name = local.sqlmi_resource_group
+# }
 
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
   count               = var.enable_read_only_group_access ? 1 : 0
@@ -73,8 +73,6 @@ resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi"
   login_username      = "platops"
   object_id           = data.azuread_group.db_admin.object_id
   tenant_id           = data.azurerm_client_config.current.tenant_id
-  principal_name      = local.admin_group
-  principal_type      = "Group"
   depends_on = [
     azurerm_mssql_managed_instance.sqlmi
   ]

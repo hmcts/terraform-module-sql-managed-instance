@@ -22,6 +22,10 @@ variable "enable_read_only_group_access" {
   description = "Enables read only group support for accessing the database"
 }
 
+variable "admin_user_object_id" {
+  default     = null
+  description = "The ID of the principal to be granted admin access to the database server, should be the principal running this normally. If you are using Jenkins pass through the variable 'jenkins_AAD_objectId'."
+}
 
 
 
