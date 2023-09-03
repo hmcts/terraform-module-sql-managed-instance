@@ -21,6 +21,7 @@ data "azuread_group" "db_admin" {
   security_enabled = true
 }
 
+
 # data "azuread_service_principal" "mi_name" {
 #   count     = var.enable_read_only_group_access ? 1 : 0
 #   object_id = var.admin_user_object_id
@@ -32,9 +33,15 @@ data "azuread_group" "db_admin" {
 #   override_special = "()-_"
 # }
 
+resource "azurerm_user_assigned_identity" "sqlmi-ua" {
+  location            = local.sqlmi_location
+  name                = "sqlmi-useridentity"
+  resource_group_name = local.sqlmi_resource_group
+}
 
 
-# Create managed instance
+
+Create managed instance
 resource "azurerm_mssql_managed_instance" "sqlmi" {
   name                         = local.sqlmi_name
   resource_group_name          = local.sqlmi_resource_group
@@ -49,7 +56,9 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
 
   identity {
-    type = "SystemAssigned"
+    type                    = "UserAssigned"
+    identity_ids            = [azurerm_user_assigned_identity.sqlmi-ua.id]
+
   }
 
   
@@ -65,11 +74,6 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
 data "azuread_directory_roles" "current" {}
 
-# resource "azurerm_user_assigned_identity" "sqlmi-ui" {
-#   location            = local.sqlmi_location
-#   name                = "sqlmi-useridentity"
-#   resource_group_name = local.sqlmi_resource_group
-# }
 
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
   count               = var.enable_read_only_group_access ? 1 : 0
