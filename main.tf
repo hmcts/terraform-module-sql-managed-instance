@@ -41,7 +41,7 @@ resource "azurerm_user_assigned_identity" "sqlmi-ua" {
 
 
 
-Create managed instance
+# Create managed instance
 resource "azurerm_mssql_managed_instance" "sqlmi" {
   name                         = local.sqlmi_name
   resource_group_name          = local.sqlmi_resource_group
