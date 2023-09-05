@@ -64,13 +64,6 @@ module "todo_resource_name" {
 | <a name="input_sqlmi_subnet_id"></a> [sqlmi\_subnet\_id](#input\_sqlmi\_subnet\_id) | The Subnet ID to connect the SQL Managed Instance to. | `string` | n/a | yes |
 | <a name="input_storage_size_in_gb"></a> [storage\_size\_in\_gb](#input\_storage\_size\_in\_gb) | Maximum storage space for the SQL Managed instance. | `number` | n/a | yes |
 | <a name="input_vcores"></a> [vcores](#input\_vcores) | Number of cores that should be assigned to the SQL Managed Instance. | `number` | n/a | yes |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| <a name="output_resource_group_location"></a> [resource\_group\_location](#output\_resource\_group\_location) | n/a |
-| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | n/a |
 <!-- END_TF_DOCS -->
 
 ## Contributing
