@@ -90,7 +90,6 @@ resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi"
 resource "azurerm_mssql_managed_database" "sqlmi_db" {
   name                = var.sqlmi_db
   managed_instance_id = azurerm_mssql_managed_instance.sqlmi.id
-  object_id           = "84dbe9ab-0d94-43df-a4d5-4d840d0bf714"
 }
 
 
