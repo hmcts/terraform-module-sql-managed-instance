@@ -81,6 +81,7 @@ resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi"
   login_username      = "platops"
   object_id           = data.azuread_group.db_admin.object_id
   tenant_id           = data.azurerm_client_config.current.tenant_id
+  AD_auth_only        = false
   depends_on = [
     azurerm_mssql_managed_instance.sqlmi
   ]
