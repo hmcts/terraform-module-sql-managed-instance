@@ -2,8 +2,8 @@ locals {
   default_name         = var.component != "" ? "${var.product}-${var.component}" : var.product
   name                 = var.name != "" ? var.name : local.default_name
   sqlmi_name           = "${local.name}-${var.env}"
-  sqlmi_resource_group = var.resource_group_name == null ? azurerm_resource_group.rg[0].name : var.resource_group_name
-  sqlmi_location       = var.resource_group_name == null ? azurerm_resource_group.rg[0].location : var.location
+  # sqlmi_resource_group = var.resource_group_name == null ? azurerm_resource_group.rg[0].name : var.resource_group_name
+  # sqlmi_location       = var.resource_group_name == null ? azurerm_resource_group.rg[0].location : var.location
   env                  = var.env == "sandbox" ? "sbox" : var.env
   # vnet_rg_name         = var.business_area == "sds" ? "ss-${var.env}-network-rg" : "cft-${local.env}-network-rg"
   # vnet_name            = var.business_area == "sds" ? "ss-${var.env}-vnet" : "cft-${local.env}-vnet"
@@ -34,9 +34,9 @@ data "azuread_group" "db_admin" {
 # }
 
 resource "azurerm_user_assigned_identity" "sqlmi-ua" {
-  location            = local.sqlmi_location
-  name                = "sqlmi-useridentity"
-  resource_group_name = local.sqlmi_resource_group
+  # location            = local.sqlmi_location
+  # name                = "sqlmi-useridentity"
+  # resource_group_name = local.sqlmi_resource_group
 }
 
 
