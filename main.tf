@@ -56,12 +56,12 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
 
   identity {
-    type                    = "UserAssigned"
-    identity_ids            = [azurerm_user_assigned_identity.sqlmi-ua.id]
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.sqlmi-ua.id]
 
   }
 
-  
+
 
   # authentication {
   #   active_directory_auth_enabled = true
@@ -76,12 +76,12 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
 
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
-  count               = var.enable_read_only_group_access ? 1 : 0
-  managed_instance_id = azurerm_mssql_managed_instance.sqlmi.id
-  login_username      = "platops"
-  object_id           = data.azuread_group.db_admin.object_id
-  tenant_id           = data.azurerm_client_config.current.tenant_id
-  AD_auth_only        = false
+  count                       = var.enable_read_only_group_access ? 1 : 0
+  managed_instance_id         = azurerm_mssql_managed_instance.sqlmi.id
+  login_username              = "platops"
+  object_id                   = data.azuread_group.db_admin.object_id
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  azuread_authentication_only = false
   depends_on = [
     azurerm_mssql_managed_instance.sqlmi
   ]
