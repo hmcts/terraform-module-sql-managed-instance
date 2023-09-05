@@ -71,7 +71,6 @@ module "todo_resource_name" {
 |------|-------------|
 | <a name="output_resource_group_location"></a> [resource\_group\_location](#output\_resource\_group\_location) | n/a |
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | n/a |
-| <a name="output_roles"></a> [roles](#output\_roles) | n/a |
 <!-- END_TF_DOCS -->
 
 ## Contributing
