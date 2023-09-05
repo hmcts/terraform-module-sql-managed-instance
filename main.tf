@@ -72,7 +72,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   tags = var.common_tags
 }
 
-data "azuread_directory_roles" "current" {}
+# data "azuread_directory_roles" "current" {}
 
 
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
