@@ -14,7 +14,7 @@ output "sql_managed_instance_id" {
 }
 
 output "database_ids" {
-  value       = azurerm_mssql_managed_database.this.*.id
+  value       = [for db in azurerm_mssql_managed_database.this : db.id]
   description = "The IDs of the SQL Managed Databases."
 }
 
