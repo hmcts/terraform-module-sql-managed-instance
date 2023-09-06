@@ -52,3 +52,9 @@ variable "subnet_ip_range" {
   description = "The IP range of the subnet to connect the SQL Managed Instance to."
   default     = null
 }
+
+variable "databases" {
+  type        = list(string)
+  description = "The names of the managed databases to create."
+  default     = []
+}
