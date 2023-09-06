@@ -1,7 +1,7 @@
-# terraform-module-template
+# terraform-module-sql-managed-instance
 
 <!-- TODO fill in resource name in link to product documentation -->
-Terraform module for [Resource name](https://example.com).
+Terraform module for [Azure SQL Managed Instance](https://azure.microsoft.com/en-gb/products/azure-sql/managed-instance/).
 
 ## Example
 
