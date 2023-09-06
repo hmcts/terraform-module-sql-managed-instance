@@ -1,14 +1,3 @@
-variable "name" {
-  default     = ""
-  description = "The default name will be product+component+env, you can override the product+component part by setting this"
-}
-
-variable "admin_password" {
-  type        = string
-  sensitive   = true
-  description = "The Admin password for the SQL Managed Instance."
-}
-
 variable "sqlmi_subnet_id" {
   type        = string
   description = "The Subnet ID to connect the SQL Managed Instance to."
@@ -34,9 +23,9 @@ variable "storage_size_in_gb" {
   description = "Maximum storage space for the SQL Managed instance."
 }
 
-variable "sqlmi_db" {
-  type        = string
-  description = "The name of the Managed Database to create. "
+variable "databases" {
+  type        = list(string)
+  description = "The names of the managed databases to create."
 }
 
 variable "env" {
