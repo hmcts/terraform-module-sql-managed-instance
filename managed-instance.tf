@@ -5,15 +5,15 @@ resource "random_password" "password" {
 }
 
 resource "azurerm_user_assigned_identity" "sqlmi-ua" {
-  location            = local.sqlmi_location
+  location            = local.location
   name                = "sqlmi-useridentity"
-  resource_group_name = local.sqlmi_resource_group
+  resource_group_name = local.resource_group
 }
 
 resource "azurerm_mssql_managed_instance" "sqlmi" {
   name                         = "${local.name}-${var.env}"
-  resource_group_name          = local.sqlmi_resource_group
-  location                     = local.sqlmi_location
+  resource_group_name          = local.resource_group
+  location                     = local.location
   subnet_id                    = var.sqlmi_subnet_id
   administrator_login          = var.admin_name
   administrator_login_password = local.admin_password

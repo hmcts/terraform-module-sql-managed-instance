@@ -1,11 +1,14 @@
 output "resource_group_name" {
-  value = local.sqlmi_resource_group
+  value       = local.resource_group
+  description = "The name of the resource group resources have been deployed to."
 }
 
-output "resource_group_location" {
-  value = local.sqlmi_location
+output "location" {
+  value       = local.location
+  description = "The Azure region resources have been deployed to."
 }
 
-# output "roles" {
-#   value = data.azuread_directory_roles.current.object_ids
-# }
+output "sql_managed_instance_id" {
+  value       = azurerm_mssql_managed_instance.sqlmi.id
+  description = "The ID of the SQL Managed Instance."
+}

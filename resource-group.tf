@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "new" {
   name     = "${local.name}-${var.env}"
   location = var.location
 
-  tags = module.ctags.common_tags
+  tags = var.common_tags
 }
 
 data "azurerm_resource_group" "existing" {
