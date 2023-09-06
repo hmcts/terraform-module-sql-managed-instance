@@ -22,7 +22,6 @@ module "sqlmi" {
   project            = var.project
   component          = var.component
   common_tags        = var.common_tags
-  admin_group        = "DTS Platform Operations"
   business_area      = var.project
 }
 ```
@@ -44,8 +43,7 @@ module "sqlmi" {
   product                      = var.product
   project                      = var.project
   component                    = var.component
-  common_tags                  = module.ctags.common_tags
-  admin_group                  = "DTS platform operations"
+  common_tags                  = var.common_tags
   business_area                = var.project
 }
 ```
