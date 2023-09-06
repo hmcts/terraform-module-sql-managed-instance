@@ -22,11 +22,6 @@ variable "storage_size_in_gb" {
   description = "Maximum storage space for the SQL Managed instance."
 }
 
-variable "databases" {
-  type        = list(string)
-  description = "The names of the managed databases to create."
-}
-
 variable "env" {
   description = "Environment value"
   type        = string
@@ -53,9 +48,13 @@ variable "admin_group" {
 variable "common_tags" {
   description = "Common Tags"
   type        = map(string)
-  default     = null
 }
 
 variable "business_area" {
-  description = "business_area name - sds or cft."
+  description = "business_area name - SDS or CFT."
+  type        = string
+  validation {
+    condition     = contains(["sds", "cft"], lower(var.business_area))
+    error_message = "Invalid valid for business_area. Valid values are: sds or cft."
+  }
 }

@@ -6,7 +6,7 @@ resource "random_password" "password" {
 
 resource "azurerm_user_assigned_identity" "sqlmi-ua" {
   location            = local.location
-  name                = "sqlmi-useridentity"
+  name                = "${local.name}-mi-${var.env}"
   resource_group_name = local.resource_group
 }
 
