@@ -1,11 +1,11 @@
 # terraform-module-sql-managed-instance
 
-<!-- TODO fill in resource name in link to product documentation -->
 Terraform module for [Azure SQL Managed Instance](https://azure.microsoft.com/en-gb/products/azure-sql/managed-instance/).
 
 ## Example
+The module can use an existing Resource Group, VNet and Subnet or it can create basic forms these for you. There are two example below, one using existing resources and the other letting the module create these resources.
 
-<!-- todo update module name -->
+### New RG, VNet & Subnet Example
 ```hcl
 module "sqlmi" {
   source             = "git::https://github.com/hmcts/terraform-module-sql-managed-instance.git?ref=main"
@@ -16,13 +16,37 @@ module "sqlmi" {
   vcores             = 4
   databases          = ["testdb"]
   admin_name         = var.admin_name
+  subnet_ip_range    = "10.10.10.0/27"
   env                = "sbox"
   product            = var.product
   project            = var.project
   component          = var.component
-  common_tags        = module.ctags.common_tags
-  admin_group        = "DTS platform operations"
+  common_tags        = var.common_tags
+  admin_group        = "DTS Platform Operations"
   business_area      = var.project
+}
+```
+
+### Existing RG, VNet & Subnet Example
+```hcl
+module "sqlmi" {
+  source                       = "git::https://github.com/hmcts/terraform-module-sql-managed-instance.git?ref=main"
+  name                         = "test-sqlmi"
+  license_type                 = "BasePrice"
+  sku_name                     = "GP_Gen5"
+  storage_size_in_gb           = 32
+  vcores                       = 4
+  databases                    = ["testdb"]
+  admin_name                   = var.admin_name
+  existing_resource_group_name = "my-sqlmi-rg"
+  subnet_id                    = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-sqlmi-rg/providers/Microsoft.Network/virtualNetworks/my-sqlmi-vnet/subnets/sqlmi-subnet"
+  env                          = "sbox"
+  product                      = var.product
+  project                      = var.project
+  component                    = var.component
+  common_tags                  = module.ctags.common_tags
+  admin_group                  = "DTS platform operations"
+  business_area                = var.project
 }
 ```
 
