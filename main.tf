@@ -78,10 +78,9 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 resource "azurerm_mssql_managed_instance_active_directory_administrator" "sqlmi" {
   count                       = var.enable_read_only_group_access ? 1 : 0
   managed_instance_id         = azurerm_mssql_managed_instance.sqlmi.id
-  login_username              = "platops"
+  login_username              = "dtsplatformops@hmcts.net"
   object_id                   = data.azuread_group.db_admin.object_id
   tenant_id                   = data.azurerm_client_config.current.tenant_id
-  azuread_authentication_only = true
   depends_on = [
     azurerm_mssql_managed_instance.sqlmi
   ]
