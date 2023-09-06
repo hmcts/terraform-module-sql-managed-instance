@@ -31,15 +31,17 @@ module "sqlmi" {
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 2.41.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.71.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | 3.5.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | n/a |
+| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.41.0 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.71.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
 
 ## Resources
 
@@ -52,8 +54,8 @@ module "sqlmi" {
 | [azurerm_subnet.new](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/subnet) | resource |
 | [azurerm_user_assigned_identity.sqlmi-ua](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/user_assigned_identity) | resource |
 | [azurerm_virtual_network.new](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/virtual_network) | resource |
-| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
-| [azuread_group.db_admin](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/group) | data source |
+| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
+| [azuread_group.db_admin](https://registry.terraform.io/providers/hashicorp/azuread/2.41.0/docs/data-sources/group) | data source |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/data-sources/client_config) | data source |
 | [azurerm_resource_group.existing](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/data-sources/resource_group) | data source |
 | [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/data-sources/subscription) | data source |
