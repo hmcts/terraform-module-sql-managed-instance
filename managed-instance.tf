@@ -14,7 +14,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   name                         = "${local.name}-${var.env}"
   resource_group_name          = local.resource_group
   location                     = local.location
-  subnet_id                    = var.sqlmi_subnet_id
+  subnet_id                    = local.subnet_id
   administrator_login          = var.admin_name
   administrator_login_password = local.admin_password
   license_type                 = var.license_type

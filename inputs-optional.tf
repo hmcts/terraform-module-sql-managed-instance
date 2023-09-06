@@ -35,8 +35,20 @@ variable "enable_aad_integration" {
   default     = true
 }
 
-variable "enable_read_only_group_access" {
-  type        = bool
-  default     = true
-  description = "Enables read only group support for accessing the database"
+variable "subnet_id" {
+  type        = string
+  description = "The Subnet ID to connect the SQL Managed Instance to."
+  default     = null
+}
+
+variable "vnet_name" {
+  type        = string
+  description = "The VNet name to connect the SQL Managed Instance to."
+  default     = null
+}
+
+variable "subnet_ip_range" {
+  type        = string
+  description = "The IP range of the subnet to connect the SQL Managed Instance to."
+  default     = null
 }

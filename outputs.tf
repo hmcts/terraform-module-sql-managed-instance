@@ -12,3 +12,13 @@ output "sql_managed_instance_id" {
   value       = azurerm_mssql_managed_instance.sqlmi.id
   description = "The ID of the SQL Managed Instance."
 }
+
+output "vnet_id" {
+  value       = var.subnet_id == null && var.vnet_name == null ? azurerm_virtual_network.new[0].id : null
+  description = "The ID of the VNet, this will be null if a subnet ID is provided to the module instead."
+}
+
+output "subnet_id" {
+  value       = var.subnet_id == null ? azurerm_subnet.new[0].id : null
+  description = "The ID of the subnet, this will be null if a subnet ID is provided to the module instead."
+}
