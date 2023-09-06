@@ -12,6 +12,5 @@ module "sqlmi" {
   project            = var.project
   component          = var.component
   common_tags        = module.ctags.common_tags
-  admin_group        = "DTS platform operations"
   business_area      = var.project
 }

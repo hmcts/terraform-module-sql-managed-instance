@@ -41,10 +41,6 @@ variable "component" {
   type        = string
 }
 
-variable "admin_group" {
-  type = string
-}
-
 variable "common_tags" {
   description = "Common Tags"
   type        = map(string)
