@@ -1,8 +1,3 @@
-variable "sqlmi_subnet_id" {
-  type        = string
-  description = "The Subnet ID to connect the SQL Managed Instance to."
-}
-
 variable "license_type" {
   type        = string
   description = "The type of license the Managed Instance will use"

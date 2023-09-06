@@ -8,6 +8,8 @@ locals {
   db_reader_user = local.is_prod ? "DTS JIT Access ${var.product} DB Reader SC" : "DTS ${upper(var.business_area)} DB Access Reader"
   admin_password = var.admin_password == null ? random_password.password[0].result : var.admin_password
   valid_skus     = ["gp_gen4", "gp_gen5", "gp_gen8im", "gp_gen8ih", "bc_gen4", "bc_gen5", "bc_gen8im", "bc_gen8ih"]
+  vnet_name      = var.subnet_id == null && var.vnet_name == null ? azurerm_virtual_network.new[0].name : var.vnet_name
+  subnet_id      = var.subnet_id == null ? azurerm_subnet.new[0].id : var.subnet_id
 }
 
 data "azurerm_subscription" "current" {}
