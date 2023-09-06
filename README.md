@@ -91,10 +91,10 @@ module "sqlmi" {
 | <a name="input_admin_group"></a> [admin\_group](#input\_admin\_group) | n/a | `string` | n/a | yes |
 | <a name="input_admin_name"></a> [admin\_name](#input\_admin\_name) | The admin username for the SQL Managed Instance. | `string` | `"sqladmin"` | no |
 | <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The admin password for the SQL Managed Instance. | `string` | `null` | no |
-| <a name="input_business_area"></a> [business\_area](#input\_business\_area) | business\_area name - sds or cft. | `any` | n/a | yes |
-| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common Tags | `map(string)` | `null` | no |
+| <a name="input_business_area"></a> [business\_area](#input\_business\_area) | business\_area name - SDS or CFT. | `string` | n/a | yes |
+| <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common Tags | `map(string)` | n/a | yes |
 | <a name="input_component"></a> [component](#input\_component) | https://hmcts.github.io/glossary/#component | `string` | n/a | yes |
-| <a name="input_databases"></a> [databases](#input\_databases) | The names of the managed databases to create. | `list(string)` | n/a | yes |
+| <a name="input_databases"></a> [databases](#input\_databases) | The names of the managed databases to create. | `list(string)` | `[]` | no |
 | <a name="input_enable_aad_integration"></a> [enable\_aad\_integration](#input\_enable\_aad\_integration) | Enable Azure Active Directory integration, with PlatOps as the admins. | `bool` | `true` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment value | `string` | n/a | yes |
 | <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | Name of existing resource group to deploy resources into. | `string` | `null` | no |
@@ -114,6 +114,7 @@ module "sqlmi" {
 
 | Name | Description |
 |------|-------------|
+| <a name="output_database_ids"></a> [database\_ids](#output\_database\_ids) | The IDs of the SQL Managed Databases. |
 | <a name="output_location"></a> [location](#output\_location) | The Azure region resources have been deployed to. |
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | The name of the resource group resources have been deployed to. |
 | <a name="output_sql_managed_instance_id"></a> [sql\_managed\_instance\_id](#output\_sql\_managed\_instance\_id) | The ID of the SQL Managed Instance. |
