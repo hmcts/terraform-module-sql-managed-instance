@@ -8,6 +8,7 @@ resource "azurerm_user_assigned_identity" "sqlmi-ua" {
   location            = local.location
   name                = "${local.name}-mi-${var.env}"
   resource_group_name = local.resource_group
+  tags                = var.common_tags
 }
 
 resource "azurerm_mssql_managed_instance" "sqlmi" {
