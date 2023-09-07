@@ -2,6 +2,8 @@
 
 Terraform module for [Azure SQL Managed Instance](https://azure.microsoft.com/en-gb/products/azure-sql/managed-instance/).
 
+To use AAD Authentication to must provide a User Assigned Managed Identity ID that has the `Directory Reader` role in AAD.
+
 ## Example
 The module can use an existing Resource Group, VNet and Subnet or it can create basic forms these for you. There are two example below, one using existing resources and the other letting the module create these resources.
 
@@ -48,6 +50,36 @@ module "sqlmi" {
 }
 ```
 
+### Enable AAD Authentication
+```hcl
+resource "azurerm_user_assigned_identity" "uami" {
+  location            = "uksouth"
+  name                = "my-sqlmi-uami"
+  resource_group_name = "my-sqlmi-rg"
+  tags                = var.common_tags
+}
+
+module "sqlmi" {
+  source                            = "git::https://github.com/hmcts/terraform-module-sql-managed-instance.git?ref=main"
+  name                              = "test-sqlmi"
+  license_type                      = "BasePrice"
+  sku_name                          = "GP_Gen5"
+  storage_size_in_gb                = 32
+  vcores                            = 4
+  databases                         = ["testdb"]
+  admin_name                        = var.admin_name
+  existing_resource_group_name      = "my-sqlmi-rg"
+  subnet_id                         = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-sqlmi-rg/providers/Microsoft.Network/virtualNetworks/my-sqlmi-vnet/subnets/sqlmi-subnet"
+  env                               = "sbox"
+  product                           = var.product
+  project                           = var.project
+  component                         = var.component
+  common_tags                       = var.common_tags
+  business_area                     = var.project
+  user_assigned_managed_identity_id = "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-sqlmi-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/my-sqlmi-uami"
+}
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -72,9 +104,20 @@ module "sqlmi" {
 | [azurerm_mssql_managed_database.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/mssql_managed_database) | resource |
 | [azurerm_mssql_managed_instance.sqlmi](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/mssql_managed_instance) | resource |
 | [azurerm_mssql_managed_instance_active_directory_administrator.sqlmi](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/mssql_managed_instance_active_directory_administrator) | resource |
+| [azurerm_network_security_group.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_group) | resource |
+| [azurerm_network_security_rule.allow_health_probe_inbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
+| [azurerm_network_security_rule.allow_management_inbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
+| [azurerm_network_security_rule.allow_management_outbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
+| [azurerm_network_security_rule.allow_misubnet_inbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
+| [azurerm_network_security_rule.allow_misubnet_outbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
+| [azurerm_network_security_rule.allow_tds_inbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
+| [azurerm_network_security_rule.deny_all_inbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
+| [azurerm_network_security_rule.deny_all_outbound](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/network_security_rule) | resource |
 | [azurerm_resource_group.new](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/resource_group) | resource |
+| [azurerm_route_table.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/route_table) | resource |
 | [azurerm_subnet.new](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/subnet) | resource |
-| [azurerm_user_assigned_identity.sqlmi-ua](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/user_assigned_identity) | resource |
+| [azurerm_subnet_network_security_group_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/subnet_network_security_group_association) | resource |
+| [azurerm_subnet_route_table_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/subnet_route_table_association) | resource |
 | [azurerm_virtual_network.new](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/virtual_network) | resource |
 | [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
 | [azuread_group.db_admin](https://registry.terraform.io/providers/hashicorp/azuread/2.41.0/docs/data-sources/group) | data source |
@@ -92,7 +135,6 @@ module "sqlmi" {
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common Tags | `map(string)` | n/a | yes |
 | <a name="input_component"></a> [component](#input\_component) | https://hmcts.github.io/glossary/#component | `string` | n/a | yes |
 | <a name="input_databases"></a> [databases](#input\_databases) | The names of the managed databases to create. | `list(string)` | `[]` | no |
-| <a name="input_enable_aad_integration"></a> [enable\_aad\_integration](#input\_enable\_aad\_integration) | Enable Azure Active Directory integration, with PlatOps as the admins. | `bool` | `true` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment value | `string` | n/a | yes |
 | <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | Name of existing resource group to deploy resources into. | `string` | `null` | no |
 | <a name="input_license_type"></a> [license\_type](#input\_license\_type) | The type of license the Managed Instance will use | `string` | n/a | yes |
@@ -104,6 +146,7 @@ module "sqlmi" {
 | <a name="input_storage_size_in_gb"></a> [storage\_size\_in\_gb](#input\_storage\_size\_in\_gb) | Maximum storage space for the SQL Managed instance. | `number` | n/a | yes |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | The Subnet ID to connect the SQL Managed Instance to. | `string` | `null` | no |
 | <a name="input_subnet_ip_range"></a> [subnet\_ip\_range](#input\_subnet\_ip\_range) | The IP range of the subnet to connect the SQL Managed Instance to. | `string` | `null` | no |
+| <a name="input_user_assigned_managed_identity_id"></a> [user\_assigned\_managed\_identity\_id](#input\_user\_assigned\_managed\_identity\_id) | The ID of an existing user assigned managed identity to use for the SQL Managed Instance. Required to AAD integration and must be assigned the Directory Reeader role. | `string` | `null` | no |
 | <a name="input_vcores"></a> [vcores](#input\_vcores) | Number of cores that should be assigned to the SQL Managed Instance. | `number` | n/a | yes |
 | <a name="input_vnet_name"></a> [vnet\_name](#input\_vnet\_name) | The VNet name to connect the SQL Managed Instance to. | `string` | `null` | no |
 

@@ -4,13 +4,6 @@ resource "random_password" "password" {
   override_special = "()-_"
 }
 
-resource "azurerm_user_assigned_identity" "sqlmi-ua" {
-  location            = local.location
-  name                = "${local.name}-mi-${var.env}"
-  resource_group_name = local.resource_group
-  tags                = var.common_tags
-}
-
 resource "azurerm_mssql_managed_instance" "sqlmi" {
   name                         = "${local.name}-${var.env}"
   resource_group_name          = local.resource_group
@@ -23,10 +16,15 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   vcores                       = var.vcores
   storage_size_in_gb           = var.storage_size_in_gb
 
-  identity {
-    type         = "UserAssigned"
-    identity_ids = [azurerm_user_assigned_identity.sqlmi-ua.id]
+  dynamic "identity" {
+    for_each = var.user_assigned_managed_identity_id == null ? [] : [var.user_assigned_managed_identity_id]
+    content {
+      type         = "UserAssigned"
+      identity_ids = [identity.value]
+    }
   }
+
+  depends_on = [azurerm_subnet_network_security_group_association.this, azurerm_subnet_route_table_association.this]
 
   tags = var.common_tags
 }
