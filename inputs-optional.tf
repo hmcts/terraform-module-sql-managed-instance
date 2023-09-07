@@ -29,12 +29,6 @@ variable "existing_resource_group_name" {
   default     = null
 }
 
-variable "enable_aad_integration" {
-  description = "Enable Azure Active Directory integration, with PlatOps as the admins."
-  type        = bool
-  default     = true
-}
-
 variable "subnet_id" {
   type        = string
   description = "The Subnet ID to connect the SQL Managed Instance to."
@@ -57,4 +51,10 @@ variable "databases" {
   type        = list(string)
   description = "The names of the managed databases to create."
   default     = []
+}
+
+variable "user_assigned_managed_identity_id" {
+  type        = string
+  description = "The ID of an existing user assigned managed identity to use for the SQL Managed Instance. Required to AAD integration and must be assigned the Directory Reeader role."
+  default     = null
 }
