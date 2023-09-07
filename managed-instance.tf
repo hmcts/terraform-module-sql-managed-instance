@@ -28,5 +28,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
     identity_ids = [azurerm_user_assigned_identity.sqlmi-ua.id]
   }
 
+  depends_on = [azurerm_subnet_network_security_group_association.this, azurerm_subnet_route_table_association.this]
+
   tags = var.common_tags
 }
