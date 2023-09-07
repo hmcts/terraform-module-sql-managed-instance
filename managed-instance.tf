@@ -32,3 +32,9 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
   tags = var.common_tags
 }
+
+resource "azurerm_mssql_managed_instance_security_alert_policy" "default" {
+  resource_group_name   = local.resource_group
+  managed_instance_name = "${local.name}-${var.env}"
+  enabled               = true
+}
