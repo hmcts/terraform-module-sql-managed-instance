@@ -29,6 +29,7 @@ resource "azurerm_network_security_group" "this" {
   name                = "${local.name}-nsg-${var.env}"
   location            = local.location
   resource_group_name = local.resource_group
+  tags                = var.common_tags
 }
 
 
@@ -164,6 +165,7 @@ resource "azurerm_route_table" "this" {
   location                      = local.location
   resource_group_name           = local.resource_group
   disable_bgp_route_propagation = false
+  tags                          = var.common_tags
   depends_on = [
     azurerm_subnet.new
   ]
