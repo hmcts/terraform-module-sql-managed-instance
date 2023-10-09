@@ -15,6 +15,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   sku_name                     = var.sku_name
   vcores                       = var.vcores
   storage_size_in_gb           = var.storage_size_in_gb
+  collation                    = var.collation
 
   dynamic "identity" {
     for_each = var.user_assigned_managed_identity_id == null ? [] : [var.user_assigned_managed_identity_id]

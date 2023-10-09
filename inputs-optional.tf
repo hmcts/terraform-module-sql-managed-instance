@@ -58,3 +58,9 @@ variable "user_assigned_managed_identity_id" {
   description = "The ID of an existing user assigned managed identity to use for the SQL Managed Instance. Required to AAD integration and must be assigned the Directory Reeader role."
   default     = null
 }
+
+variable "collation" {
+  type        = string
+  description = "Specifies how the SQL Managed Instance will be collated."
+  default     = "Latin1_General_CI_AS"
+}
