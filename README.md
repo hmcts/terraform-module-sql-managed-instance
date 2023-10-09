@@ -132,6 +132,7 @@ module "sqlmi" {
 | <a name="input_admin_name"></a> [admin\_name](#input\_admin\_name) | The admin username for the SQL Managed Instance. | `string` | `"sqladmin"` | no |
 | <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The admin password for the SQL Managed Instance. | `string` | `null` | no |
 | <a name="input_business_area"></a> [business\_area](#input\_business\_area) | business\_area name - SDS or CFT. | `string` | n/a | yes |
+| <a name="input_collation"></a> [collation](#input\_collation) | Specifies how the SQL Managed Instance will be collated. | `string` | `"Latin1_General_CI_AS"` | no |
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common Tags | `map(string)` | n/a | yes |
 | <a name="input_component"></a> [component](#input\_component) | https://hmcts.github.io/glossary/#component | `string` | n/a | yes |
 | <a name="input_databases"></a> [databases](#input\_databases) | The names of the managed databases to create. | `list(string)` | `[]` | no |
