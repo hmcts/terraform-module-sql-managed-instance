@@ -87,7 +87,7 @@ module "sqlmi" {
 |------|---------|
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 2.41.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.71.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | 3.5.1 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.0 |
 
 ## Providers
 
@@ -95,7 +95,7 @@ module "sqlmi" {
 |------|---------|
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.41.0 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.71.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.5.1 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.6.0 |
 
 ## Resources
 
@@ -119,7 +119,7 @@ module "sqlmi" {
 | [azurerm_subnet_network_security_group_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/subnet_network_security_group_association) | resource |
 | [azurerm_subnet_route_table_association.this](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/subnet_route_table_association) | resource |
 | [azurerm_virtual_network.new](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/resources/virtual_network) | resource |
-| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.5.1/docs/resources/password) | resource |
+| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.6.0/docs/resources/password) | resource |
 | [azuread_group.db_admin](https://registry.terraform.io/providers/hashicorp/azuread/2.41.0/docs/data-sources/group) | data source |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/data-sources/client_config) | data source |
 | [azurerm_resource_group.existing](https://registry.terraform.io/providers/hashicorp/azurerm/3.71.0/docs/data-sources/resource_group) | data source |
@@ -132,6 +132,7 @@ module "sqlmi" {
 | <a name="input_admin_name"></a> [admin\_name](#input\_admin\_name) | The admin username for the SQL Managed Instance. | `string` | `"sqladmin"` | no |
 | <a name="input_admin_password"></a> [admin\_password](#input\_admin\_password) | The admin password for the SQL Managed Instance. | `string` | `null` | no |
 | <a name="input_business_area"></a> [business\_area](#input\_business\_area) | business\_area name - SDS or CFT. | `string` | n/a | yes |
+| <a name="input_collation"></a> [collation](#input\_collation) | Specifies how the SQL Managed Instance will be collated. | `string` | `"Latin1_General_CI_AS"` | no |
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common Tags | `map(string)` | n/a | yes |
 | <a name="input_component"></a> [component](#input\_component) | https://hmcts.github.io/glossary/#component | `string` | n/a | yes |
 | <a name="input_databases"></a> [databases](#input\_databases) | The names of the managed databases to create. | `list(string)` | `[]` | no |
