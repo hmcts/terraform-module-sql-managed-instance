@@ -32,7 +32,7 @@ variable "env" {
 }
 
 variable "product" {
-  description = "https://hmcts.github.io/glossary/#product"
+  description = "https://hmcts.github.io/cloud-native-platform/glossary/#product"
   type        = string
 }
 
@@ -41,7 +41,7 @@ variable "project" {
 }
 
 variable "component" {
-  description = "https://hmcts.github.io/glossary/#component"
+  description = "https://hmcts.github.io/cloud-native-platform/glossary/#component"
   type        = string
 }
 
