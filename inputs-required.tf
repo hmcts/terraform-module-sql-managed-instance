@@ -2,7 +2,7 @@ variable "license_type" {
   type        = string
   description = "The type of license the Managed Instance will use."
   validation {
-    condition = contains(["LicenseIncluded", "BasePrice"], var.license_type)
+    condition     = contains(["LicenseIncluded", "BasePrice"], var.license_type)
     error_message = "Invalid value for license_type. Accepted values are: LicenseIncluded or BasePrice"
   }
 }
