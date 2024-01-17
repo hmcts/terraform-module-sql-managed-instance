@@ -1,14 +1,18 @@
 variable "license_type" {
   type        = string
-  description = "The type of license the Managed Instance will use"
+  description = "The type of license the Managed Instance will use."
+  validation {
+    condition     = contains(["LicenseIncluded", "BasePrice"], var.license_type)
+    error_message = "Invalid value for license_type. Accepted values are: LicenseIncluded or BasePrice"
+  }
 }
 
 variable "sku_name" {
   type        = string
   description = "The SKU Name for the SQL Managed Instance."
   validation {
-    condition     = contains(["gp_gen4", "gp_gen5", "gp_gen8im", "gp_gen8ih", "bc_gen4", "bc_gen5", "bc_gen8im", "bc_gen8ih"], lower(var.sku_name))
-    error_message = "Invalid valid for sku_name. Valid values are: GP_Gen4, GP_Gen5, GP_Gen8IM, GP_Gen8IH, BC_Gen4, BC_Gen5, BC_Gen8IM or BC_Gen8IH."
+    condition     = contains(["GP_Gen4", "GP_Gen5", "GP_Gen8IM", "GP_Gen8IH", "BC_Gen4", "BC_Gen5", "BC_Gen8IM", "BC_Gen8IH"], var.sku_name)
+    error_message = "Invalid valid for sku_name. Accepted values are: GP_Gen4, GP_Gen5, GP_Gen8IM, GP_Gen8IH, BC_Gen4, BC_Gen5, BC_Gen8IM or BC_Gen8IH."
   }
 }
 
@@ -28,7 +32,7 @@ variable "env" {
 }
 
 variable "product" {
-  description = "https://hmcts.github.io/glossary/#product"
+  description = "https://hmcts.github.io/cloud-native-platform/glossary/#product"
   type        = string
 }
 
@@ -37,7 +41,7 @@ variable "project" {
 }
 
 variable "component" {
-  description = "https://hmcts.github.io/glossary/#component"
+  description = "https://hmcts.github.io/cloud-native-platform/glossary/#component"
   type        = string
 }
 
