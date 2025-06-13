@@ -17,11 +17,12 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   storage_size_in_gb           = var.storage_size_in_gb
   collation                    = var.collation
 
+  # Combined identity block
   dynamic "identity" {
-    for_each = var.user_assigned_managed_identity_id != null ? [1] : []
+    for_each = var.enable_system_assigned_identity == true || var.user_assigned_managed_identity_id != null ? [1] : []
     content {
-      type         = "SystemAssigned UserAssigned" # Keep both
-      identity_ids = [var.user_assigned_managed_identity_id]
+      type         = var.enable_system_assigned_identity == true && var.user_assigned_managed_identity_id != null ? "SystemAssigned, UserAssigned" : var.enable_system_assigned_identity == true ? "SystemAssigned" : "UserAssigned"
+      identity_ids = var.user_assigned_managed_identity_id != null ? [var.user_assigned_managed_identity_id] : null
     }
   }
 
