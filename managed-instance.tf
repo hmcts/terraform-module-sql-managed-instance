@@ -18,9 +18,16 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   collation                    = var.collation
 
   dynamic "identity" {
+    for_each = var.enable_system_assigned_identity == true ? [1] : []
+    content {
+      type = "SystemAssigned"
+    }
+  }
+
+  dynamic "identity" {
     for_each = var.user_assigned_managed_identity_id == null ? [] : [var.user_assigned_managed_identity_id]
     content {
-      type         = "SystemAssigned"
+      type         = "UserAssigned"
       identity_ids = [identity.value]
     }
   }
