@@ -59,6 +59,12 @@ variable "user_assigned_managed_identity_id" {
   default     = null
 }
 
+variable "enable_system_assigned_identity" {
+  description = "Enable SystemAssigned managed identity"
+  type        = bool
+  default     = true
+}
+
 variable "collation" {
   type        = string
   description = "Specifies how the SQL Managed Instance will be collated."
