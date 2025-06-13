@@ -62,7 +62,7 @@ variable "user_assigned_managed_identity_id" {
 variable "enable_system_assigned_identity" {
   description = "Enable SystemAssigned managed identity"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "collation" {
