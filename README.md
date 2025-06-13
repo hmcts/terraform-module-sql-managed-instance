@@ -136,6 +136,7 @@ module "sqlmi" {
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | Common Tags | `map(string)` | n/a | yes |
 | <a name="input_component"></a> [component](#input\_component) | https://hmcts.github.io/cloud-native-platform/glossary/#component | `string` | n/a | yes |
 | <a name="input_databases"></a> [databases](#input\_databases) | The names of the managed databases to create. | `list(string)` | `[]` | no |
+| <a name="input_enable_system_assigned_identity"></a> [enable\_system\_assigned\_identity](#input\_enable\_system\_assigned\_identity) | Enable SystemAssigned managed identity | `bool` | `false` | no |
 | <a name="input_env"></a> [env](#input\_env) | Environment value | `string` | n/a | yes |
 | <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | Name of existing resource group to deploy resources into. | `string` | `null` | no |
 | <a name="input_license_type"></a> [license\_type](#input\_license\_type) | The type of license the Managed Instance will use. | `string` | n/a | yes |
