@@ -19,7 +19,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
 
   # Combined identity block
   dynamic "identity" {
-    for_each = var.enable_system_assigned_identity == true
+    for_each = var.enable_system_assigned_identity ? [1] : []
     content {
       type = "SystemAssigned"
     }
