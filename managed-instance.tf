@@ -20,7 +20,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   dynamic "identity" {
     for_each = var.user_assigned_managed_identity_id != null ? [1] : []
     content {
-      type         = "SystemAssigned, UserAssigned" # Keep both
+      type         = "SystemAssigned UserAssigned" # Keep both
       identity_ids = [var.user_assigned_managed_identity_id]
     }
   }
