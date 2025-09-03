@@ -13,6 +13,11 @@ output "sql_managed_instance_id" {
   description = "The ID of the SQL Managed Instance."
 }
 
+output "sql_managed_instance_fqdn" {
+  value       = azurerm_mssql_managed_instance.sqlmi.fqdn
+  description = "The ID of the SQL Managed Instance."
+}
+
 output "database_ids" {
   value       = [for db in azurerm_mssql_managed_database.this : db.id]
   description = "The IDs of the SQL Managed Databases."
