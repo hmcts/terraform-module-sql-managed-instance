@@ -164,7 +164,7 @@ resource "azurerm_route_table" "this" {
   name                          = "${local.name}-rt-${var.env}"
   location                      = local.location
   resource_group_name           = local.resource_group
-  disable_bgp_route_propagation = false
+  #disable_bgp_route_propagation = false
   tags                          = var.common_tags
   depends_on = [
     azurerm_subnet.new
