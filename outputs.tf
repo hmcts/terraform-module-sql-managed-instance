@@ -27,3 +27,8 @@ output "subnet_id" {
   value       = var.subnet_id == null ? azurerm_subnet.new[0].id : null
   description = "The ID of the subnet, this will be null if a subnet ID is provided to the module instead."
 }
+
+output "sql_managed_instance_fqdn" {
+  value       = azurerm_mssql_managed_instance.sqlmi.fqdn
+  description = "The fully qualified domain name (FQDN) of the SQL Managed Instance."
+}
