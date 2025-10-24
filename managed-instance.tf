@@ -14,7 +14,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   license_type                 = var.license_type
   sku_name                     = var.sku_name
   vcores                       = var.vcores
-  storage_size_in_gb           = var.storage_size_in_gb
+  storage_size_in_gb           = 256
   collation                    = var.collation
   proxy_override               = "Proxy"
 
