@@ -6,7 +6,7 @@ variables {
   license_type       = "BasePrice"
   sku_name           = "GP_Gen5"
   vcores             = 4
-  storage_size_in_gb = 32
+  storage_size_in_gb = 256
   env                = "test"
   product            = "terraform-module-sql-managed-instance-tests"
   project            = "sds"

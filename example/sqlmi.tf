@@ -3,7 +3,7 @@ module "sqlmi" {
   name               = "test-sqlmi"
   license_type       = "BasePrice"
   sku_name           = "GP_Gen5"
-  storage_size_in_gb = 32
+  storage_size_in_gb = 256
   vcores             = 4
   databases          = ["testdb"]
   admin_name         = var.admin_name
