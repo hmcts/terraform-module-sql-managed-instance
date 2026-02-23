@@ -32,3 +32,8 @@ output "sql_managed_instance_fqdn" {
   value       = azurerm_mssql_managed_instance.sqlmi.fqdn
   description = "The fully qualified domain name (FQDN) of the SQL Managed Instance."
 }
+
+output "admin_password" {
+  value       = local.admin_password
+  description = "The password used for the admin user, either passed in via vars or generated."
+}
