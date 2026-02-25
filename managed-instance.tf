@@ -2,6 +2,13 @@ resource "random_password" "password" {
   count            = var.admin_password == null ? 1 : 0
   length           = 20
   override_special = "()-_"
+
+  lifecycle {
+    ignore_changes = [
+      length,
+      override_special,
+    ]
+  }
 }
 
 resource "azurerm_mssql_managed_instance" "sqlmi" {
