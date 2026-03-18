@@ -23,7 +23,7 @@ resource "azurerm_mssql_managed_instance" "sqlmi" {
   vcores                       = var.vcores
   storage_size_in_gb           = 256
   collation                    = var.collation
-  proxy_override               = "Proxy"
+  proxy_override               = "Redirect"
 
   # Combined identity block
   dynamic "identity" {
